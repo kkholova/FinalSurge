@@ -47,4 +47,4 @@ workflows:
               only:
                 - master
     jobs:
-      - ui-tests 
+      - ui-tests
