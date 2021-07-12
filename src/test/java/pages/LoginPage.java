@@ -6,10 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
     public static final By USERNAME_INPUT = By.id("login_name");
     public static final By PASSWORD_INPUT = By.id("login_password");
     public static final By LOGIN_BUTTON = By.cssSelector("[type = 'submit']");
+    public static final By ERROR_MESSAGE = By.cssSelector("label[class='error']");
 
 
     public LoginPage(WebDriver driver) {
@@ -22,19 +23,30 @@ public class LoginPage extends BasePage{
         return this;
     }
 
+    @Step("Click on login button")
+    public void clickOnLoginButton() {
+        log.info("Click on Login button");
+        driver.findElement(LOGIN_BUTTON).click();
+    }
+
     @Step("Log in with a user")
-    public HomePage login(String user, String password){
+    public HomePage login(String user, String password) {
         log.info("Log in with user and password");
         driver.findElement(USERNAME_INPUT).sendKeys(user);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
+        clickOnLoginButton();
         return new HomePage(driver);
+    }
 
+    public String takeErrorMessage() {
+        log.info("Take error message");
+        String errorMessage = driver.findElement(ERROR_MESSAGE).getText();
+        return errorMessage;
     }
 
     @Step("Check that page was opened")
     public boolean isPageOpened() {
-        log.info("Validating that login button %s exists",LOGIN_BUTTON);
+        log.info("Validating that login button %s exists", LOGIN_BUTTON);
         return isExist(LOGIN_BUTTON);
     }
 }

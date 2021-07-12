@@ -18,8 +18,9 @@ public class BaseTest {
     WebDriverWait wait;
     LoginPage loginPage;
     HomePage homePage;
-    public static String USER ="katekholova@gmail.com";
-    public static String PASSWORD="Kk!7571255";
+    ProfilePage profilePage;
+    public static String USER = "katekholova@gmail.com";
+    public static String PASSWORD = "Kk!7571255";
 
     @Parameters({"browser"})
     @BeforeMethod(description = "Open browser")
@@ -40,12 +41,13 @@ public class BaseTest {
 
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
+        profilePage = new ProfilePage(driver);
     }
 
 
-    @AfterMethod(alwaysRun = true,description = "Close browser")
-    public void tearDown() {
-        driver.quit();
-    }
+//    @AfterMethod(alwaysRun = true,description = "Close browser")
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
 }
