@@ -39,7 +39,7 @@ public abstract class BasePage {
     @Step("Validate input")
     public void validateInput(String label, String expected){
         String locator = "//div[contains(@id, 'EditProfile')]//*[contains(text(),'%s')]/ancestor::p";
-        log.info("Validating input with locator %s",locator);
+        log.info("Validating input with label: " + label);
         Assert.assertEquals(
                 driver.findElement(By.xpath(String.format(locator,label))).getText(),
                 expected,

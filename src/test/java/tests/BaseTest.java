@@ -9,10 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import tests.base.TestListener;
 
 import java.util.concurrent.TimeUnit;
 
-
+@Listeners(TestListener.class)
 public class BaseTest {
     WebDriver driver;
     WebDriverWait wait;
@@ -45,9 +46,9 @@ public class BaseTest {
     }
 
 
-//    @AfterMethod(alwaysRun = true,description = "Close browser")
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @AfterMethod(alwaysRun = true, description = "Close browser")
+    public void tearDown() {
+        driver.quit();
+    }
 
 }

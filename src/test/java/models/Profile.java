@@ -1,8 +1,10 @@
 package models;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+@AllArgsConstructor
 @Data
 @Builder
 public class Profile {
@@ -14,15 +16,4 @@ public class Profile {
     String region;
     String city;
     String zip;
-
-    public Profile(String gender,String birthday,String weight, String weightMeasure,String country,String region,String city,String zip){
-        this.gender = gender;
-        this.birthday = birthday;
-        this.weight = weight;
-        this.weightMeasure = weightMeasure;
-        this.country = country;
-        this.region = region;
-        this.city = city;
-        this.zip = zip;
-    }
 }

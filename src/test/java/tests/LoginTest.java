@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,6 +13,8 @@ public class LoginTest extends BaseTest {
         loginPage.login(USER, PASSWORD);
         Assert.assertTrue(homePage.isPageOpened(), "Log in failed");
     }
+
+
 
     @Test(description = "Negative test for login: no user name provided")
     public void shouldNotLoginWithoutUsername() {
