@@ -7,13 +7,14 @@
     <test name="test 1">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="tests.LogIn"/>
+            <class name="tests.LoginTest"/>
+            <class name="tests.ProfileTest"/>
         </classes>
     </test> <!-- Test -->
     <test name="test 2">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
-            <class name="tests.LogIn"/>
+            <class name="tests.LoginTest"/>
         </classes>
     </test> <!-- Test -->
 </suite>

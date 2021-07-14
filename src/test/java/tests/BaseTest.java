@@ -9,17 +9,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import tests.base.TestListener;
 
 import java.util.concurrent.TimeUnit;
 
-
+@Listeners(TestListener.class)
 public class BaseTest {
     WebDriver driver;
     WebDriverWait wait;
     LoginPage loginPage;
     HomePage homePage;
-    public static String USER ="katekholova@gmail.com";
-    public static String PASSWORD="Kk!7571255";
+    ProfilePage profilePage;
+    public static String USER = "katekholova@gmail.com";
+    public static String PASSWORD = "Kk!7571255";
 
     @Parameters({"browser"})
     @BeforeMethod(description = "Open browser")
@@ -40,10 +42,11 @@ public class BaseTest {
 
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
+        profilePage = new ProfilePage(driver);
     }
 
 
-    @AfterMethod(alwaysRun = true,description = "Close browser")
+    @AfterMethod(alwaysRun = true, description = "Close browser")
     public void tearDown() {
         driver.quit();
     }
