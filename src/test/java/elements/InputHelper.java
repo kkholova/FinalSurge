@@ -10,13 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 
 @Log4j2
-public class Input {
+public class InputHelper {
     WebDriver driver;
     WebDriverWait wait;
     String id;
-    String path;
 
-    public Input(WebDriver driver, String id) {
+
+    public InputHelper(WebDriver driver, String id) {
         this.driver = driver;
         this.id = id;
         wait = new WebDriverWait(driver, 20);
