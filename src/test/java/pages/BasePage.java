@@ -23,10 +23,10 @@ public abstract class BasePage {
 
     public abstract boolean isPageOpened();
 
-    @Step("Check that element exists")
+    @Step("Check that element with locator {locator} exists")
     public boolean isExist(By locator) {
         try {
-            log.info("Check that element %s is on the page", locator);
+            log.info("Check that element with locator is on the page" + locator);
             driver.findElement(locator);
             return true;
         } catch (NoSuchElementException exception) {

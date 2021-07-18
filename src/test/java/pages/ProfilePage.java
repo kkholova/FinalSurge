@@ -1,6 +1,6 @@
 package pages;
 
-import elements.Input;
+import elements.InputHelper;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import models.Profile;
@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 
@@ -73,21 +72,21 @@ public class ProfilePage extends BasePage {
 //        log.info("Add photo to profile");
 //        new Inputs(driver, "UserThumbnail").uploadPhoto(profile.getPhoto());
         log.info("Set gender in profile");
-        new Input(driver, chooseGender(gender)).tickRadioButton(chooseGender(gender));
+        new InputHelper(driver, chooseGender(gender)).tickRadioButton(chooseGender(gender));
         log.info("Add Bday to profile");
-        new Input(driver, "BDay").writeText(profile.getBirthday());
+        new InputHelper(driver, "BDay").writeText(profile.getBirthday());
         log.info("Add weight to profile");
-        new Input(driver, "Weight").writeText(profile.getWeight());
+        new InputHelper(driver, "Weight").writeText(profile.getWeight());
         log.info("Choose weight measure in profile");
-        new Input(driver, chooseWeightMeasure(weightMeasure)).tickRadioButton(chooseWeightMeasure(weightMeasure));
+        new InputHelper(driver, chooseWeightMeasure(weightMeasure)).tickRadioButton(chooseWeightMeasure(weightMeasure));
         log.info("Add country to profile");
-        new Input(driver, "Country").selectFromDropdown(profile.getCountry());
+        new InputHelper(driver, "Country").selectFromDropdown(profile.getCountry());
         log.info("Add region to profile");
-        new Input(driver, "Region").selectFromDropdown(profile.getRegion());
+        new InputHelper(driver, "Region").selectFromDropdown(profile.getRegion());
         log.info("Add city to profile");
-        new Input(driver, "City").writeText(profile.getCity());
+        new InputHelper(driver, "City").writeText(profile.getCity());
         log.info("Add zip to profile");
-        new Input(driver, "Zip").writeText(profile.getZip());
+        new InputHelper(driver, "Zip").writeText(profile.getZip());
     }
 
     @Step("Save profile's changes")
@@ -108,16 +107,25 @@ public class ProfilePage extends BasePage {
         validateInput("Zip/Postal Code:", String.format("Zip/Postal Code: " + profile.getZip()));
     }
 
-    @Step("Add photo to the user profile")
-    public void uploadPhoto(String path) {
-        log.info("Upload photo to the profile");
-        File file = new File(path);
-        driver.findElement(By.id("UserThumbnail")).click();
-//          wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("profilepic")));
-        driver.findElement(By.xpath("//input[contains(@name,'profilepic')]")).click();
-//               sendKeys(file.getAbsolutePath());
-        driver.findElement(By.id("NextStep")).click();
-    }
+//TODO   Пока не пробито что-то с дефолтным fileDetector
+
+//    @Step("Add photo to the user profile")
+//    public void uploadPhoto(String path) {
+//        log.info("Upload photo to the profile");
+//        File file = new File(path);
+//        driver.findElement(By.id("UserThumbnail")).click();
+//        WebElement uploader = driver.findElement(By.id("uploader"));
+//        driver.switchTo().frame(uploader);
+//        log.info("switched to frame");
+//        driver.findElement(By.cssSelector("[type = 'file']")).sendKeys(file.getAbsolutePath());
+//        log.info("file name sent");
+//        driver.switchTo().defaultContent();
+//    }
+//
+//    @Step
+//    public void savePhoto(){
+//        driver.findElement(By.id("NextStep")).click();
+//    }
 
     @Step("Clean profile fields")
     public void clean() {

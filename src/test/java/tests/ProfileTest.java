@@ -1,6 +1,7 @@
 package tests;
 
 import models.Profile;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -30,12 +31,15 @@ public class ProfileTest extends BaseTest {
         profilePage.saveProfileChanges();
     }
 
-    @Test(description = "Add user photo to the profile")
-    public void profilePhotoShouldBeAdded() {
-        loginPage.open();
-        loginPage.login(USER, PASSWORD);
-        profilePage.openProfilePage();
-        profilePage.openEditProfileForm();
-        profilePage.uploadPhoto("scr/test/resources/cat.png");
-    }
+
+//    @Test(description = "Add user photo to the profile")
+//    public void profilePhotoShouldBeAdded() {
+//        loginPage.open();
+//        loginPage.login(USER, PASSWORD);
+//        profilePage.openProfilePage();
+//        profilePage.openEditProfileForm();
+//        profilePage.uploadPhoto("src/test/resources/cat.jpg");
+//        String fileName = driver.findElement(By.cssSelector(".fileupload-preview")).getText();
+//        Assert.assertEquals(fileName, "cat.jpg", "File was not uploaded");
+//    }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -20,6 +21,9 @@ public class BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     ProfilePage profilePage;
+    CalendarPage calendarPage;
+    WorkoutPage workoutPage;
+    ReportsPage reportsPage;
     public static String USER = "katekholova@gmail.com";
     public static String PASSWORD = "Kk!7571255";
 
@@ -30,10 +34,15 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-maximized");
+//            options.addArguments("--headless");
             options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
         } else if (browser.equals("firefox")) {
             WebDriverManager.firefoxdriver().setup();
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--start-maximized");
+            options.addArguments("--headless");
+            options.addArguments("--disable-notifications");
             driver = new FirefoxDriver();
         }
         testContext.setAttribute("driver", driver);
@@ -43,12 +52,15 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         profilePage = new ProfilePage(driver);
+        calendarPage = new CalendarPage(driver);
+        workoutPage = new WorkoutPage(driver);
+        reportsPage = new ReportsPage(driver);
     }
 
 
-    @AfterMethod(alwaysRun = true, description = "Close browser")
-    public void tearDown() {
-        driver.quit();
-    }
+//    @AfterMethod(alwaysRun = true, description = "Close browser")
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
 }
