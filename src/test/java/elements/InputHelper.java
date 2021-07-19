@@ -10,13 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 
 @Log4j2
-public class Input {
+public class InputHelper {
     WebDriver driver;
     WebDriverWait wait;
     String id;
-    String path;
 
-    public Input(WebDriver driver, String id) {
+    public InputHelper(WebDriver driver, String id) {
         this.driver = driver;
         this.id = id;
         wait = new WebDriverWait(driver, 20);
@@ -28,7 +27,7 @@ public class Input {
         driver.findElement(By.id(id)).sendKeys(text);
 
     }
-
+    
     public boolean isRadioButtonAlreadyChosen() {
         return driver.findElement(By.id(id)).isSelected();
     }
@@ -47,6 +46,14 @@ public class Input {
                 JavascriptExecutor executor = (JavascriptExecutor) driver;
                 executor.executeScript("arguments[0].click();", element);
             }
+        }
+    }
+
+    @Step("Tick checkbox as {isTrue}")
+    public void tickCheckbox(boolean isTrue) {
+        log.info("Tick checkbox " + isTrue);
+        if(isTrue) {
+            driver.findElement(By.id(id)).click();
         }
     }
 

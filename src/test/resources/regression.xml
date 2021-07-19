@@ -9,6 +9,8 @@
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.ProfileTest"/>
+            <class name="tests.WorkoutTest"/>
+            <class name="tests.CalendarTest"/>
         </classes>
     </test> <!-- Test -->
     <test name="test 2">
