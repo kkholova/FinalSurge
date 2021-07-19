@@ -27,7 +27,7 @@ public class InputHelper {
         driver.findElement(By.id(id)).sendKeys(text);
 
     }
-    
+
     public boolean isRadioButtonAlreadyChosen() {
         return driver.findElement(By.id(id)).isSelected();
     }
@@ -52,8 +52,17 @@ public class InputHelper {
     @Step("Tick checkbox as {isTrue}")
     public void tickCheckbox(boolean isTrue) {
         log.info("Tick checkbox " + isTrue);
-        if(isTrue) {
-            driver.findElement(By.id(id)).click();
+        if (isTrue) {
+            try {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
+                driver.findElement(By.id(id)).click();
+                ;
+            } catch (ElementClickInterceptedException e) {
+                log.warn(e.getLocalizedMessage());
+                WebElement element = driver.findElement(By.id(id));
+                JavascriptExecutor executor = (JavascriptExecutor) driver;
+                executor.executeScript("arguments[0].click();", element);
+            }
         }
     }
 
