@@ -26,7 +26,7 @@ public abstract class BasePage {
     @Step("Check that element with locator {locator} exists")
     public boolean isExist(By locator) {
         try {
-            log.info("Check that element with locator is on the page" + locator);
+            log.info("Check that element with {locator} is on the page");
             driver.findElement(locator);
             return true;
         } catch (NoSuchElementException exception) {

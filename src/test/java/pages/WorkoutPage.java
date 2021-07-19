@@ -39,34 +39,21 @@ public class WorkoutPage extends BasePage {
     @Step("Add workout through the quick add")
     public void workOutQuickAdd(WorkoutQuickAdd workout) {
         log.info("Adding new workout");
-        log.info("Add workout date");
         driver.findElement(WORKOUT_DATE).clear();
         new InputHelper(driver, "WorkoutDate").writeText(workout.getDate());
-        log.info("Add time of workout " + workout.getTime());
         new InputHelper(driver, "WorkoutTime").writeText(workout.getTime());
-        log.info("Add activity type " + workout.getActivityType());
         new InputHelper(driver, "ActivityType").selectFromDropdown(workout.getActivityType());
-        log.info("Add workout name " + workout.getWorkoutName());
         new InputHelper(driver, "Name").writeText(workout.getWorkoutName());
-        log.info("Add workout description " + workout.getDescription());
         new InputHelper(driver, "Desc").writeText(workout.getDescription());
-        log.info("Choose planned workout " + workout.isPlanned());
         new InputHelper(driver, "PlannedWorkout").tickCheckbox(workout.isPlanned());
         if (workout.isPlanned()) {
-            log.info("Add planned distance " + workout.getPlannedDistance());
             new InputHelper(driver, "PDistance").writeText(workout.getPlannedDistance());
-            log.info("Add planned duration " + workout.getPlannedDuration());
             new InputHelper(driver, "PDuration").writeText(workout.getPlannedDuration());
         }
-        log.info("Add distance " + workout.getDistance());
         new InputHelper(driver, "Distance").writeText(workout.getDistance());
-        log.info("Add duration " + workout.getDuration());
         new InputHelper(driver, "Duration").writeText(workout.getDuration());
-        log.info("Choose how you feel " + workout.getHowIFelt());
         new InputHelper(driver, "HowFeel").selectFromDropdown(workout.getHowIFelt());
-        log.info("Choose effort " + workout.getPerceivedEffort());
         new InputHelper(driver, "PerEffort").selectFromDropdown(workout.getPerceivedEffort());
-        log.info("Choose save to Library " + workout.isSavedToLibrary());
         new InputHelper(driver, "SaveLibrary").tickCheckbox(workout.isSavedToLibrary());
     }
 

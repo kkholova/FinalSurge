@@ -21,14 +21,13 @@ public class InputHelper {
         wait = new WebDriverWait(driver, 20);
     }
 
-    @Step("Fill Input field {id} with data {text}")
+    @Step("Fill Input field with data {text}")
     public void writeText(String text) {
         log.info("Fill in a field with text: " + text);
         driver.findElement(By.id(id)).sendKeys(text);
 
     }
-
-
+    
     public boolean isRadioButtonAlreadyChosen() {
         return driver.findElement(By.id(id)).isSelected();
     }

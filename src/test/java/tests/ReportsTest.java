@@ -15,7 +15,7 @@ public class ReportsTest extends BaseTest {
         Assert.assertTrue(reportsPage.isPageOpened(), "Reports page wasn't opened");
     }
 
-    @Test(description = "Test that workout was added to the reports")
+    @Test(description = "Check that workout was added to the reports")
     public void workoutShouldBeAddedToReports() {
         loginPage
                 .open()
