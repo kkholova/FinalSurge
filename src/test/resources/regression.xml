@@ -11,6 +11,8 @@
             <class name="tests.ProfileTest"/>
             <class name="tests.WorkoutTest"/>
             <class name="tests.CalendarTest"/>
+            <class name="tests.ReportsTest"/>
+            <class name="tests.AddNewTypeTest"/>
         </classes>
     </test> <!-- Test -->
     <test name="test 2">
