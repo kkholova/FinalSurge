@@ -56,7 +56,6 @@ public class InputHelper {
             try {
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
                 driver.findElement(By.id(id)).click();
-                ;
             } catch (ElementClickInterceptedException e) {
                 log.warn(e.getLocalizedMessage());
                 WebElement element = driver.findElement(By.id(id));

@@ -26,5 +26,7 @@ public class CalendarTest extends BaseTest {
         workoutPage.workOutQuickAdd(workout);
         workoutPage.saveQuickAddForm();
         calendarPage.dragAndDrop(workout.getWorkoutName());
+        Assert.assertTrue(workoutPage.checkWorkoutWasAddedToCalendar(
+                workout.getWorkoutName()), "Workout was not added to the calendar");
     }
 }
