@@ -9,8 +9,8 @@ public class ReportsTest extends BaseTest {
 
     @Test(description = "Open reports page")
     public void reportsPageShouldBeOpened() {
-        loginPage.open();
-        loginPage.login(USER, PASSWORD);
+        loginPage.open(baseUrl);
+        loginPage.login(email, password);
         reportsPage.openReportsPage();
         Assert.assertTrue(reportsPage.isPageOpened(), "Reports page wasn't opened");
     }
@@ -18,8 +18,8 @@ public class ReportsTest extends BaseTest {
     @Test(description = "Check that workout was added to the reports")
     public void workoutShouldBeAddedToReports() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = QuickAddFactory.get();
         workoutPage.openWorkoutQuickAdd();

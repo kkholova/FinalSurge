@@ -9,8 +9,8 @@ public class CalendarTest extends BaseTest {
 
     @Test(description = "Open edit profile page")
     public void calendarPageShouldBeOpened() {
-        loginPage.open();
-        loginPage.login(USER, PASSWORD);
+        loginPage.open(baseUrl);
+        loginPage.login(email, password);
         calendarPage.openCalendarPage();
         Assert.assertTrue(calendarPage.isPageOpened(), "Calendar page wasn't opened");
     }
@@ -18,8 +18,8 @@ public class CalendarTest extends BaseTest {
     @Test(description = "Test that workout could be moved to the other date with drag-and-drop")
     public void workoutShouldBeDragAndDropped() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = QuickAddFactory.get();
         workoutPage.openWorkoutQuickAdd();

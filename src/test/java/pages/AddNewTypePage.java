@@ -94,9 +94,7 @@ public class AddNewTypePage extends BasePage {
     public void deleteNewActivityType(String newTypeName) {
         log.info("Workout with name " + newTypeName + " should be deleted");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(newTypeNameLocator, newTypeName))));
-        log.info("ste1");
         driver.findElement(By.xpath(String.format(newTypeNameLocator, newTypeName))).click();
-        log.info("ste2");
         openEditActivityType(newTypeName);
         driver.findElement(DELETE_ACTIVITY_TYPE_BUTTON).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_DELETE_ACTIVITY_TYPE));

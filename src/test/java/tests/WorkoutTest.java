@@ -10,8 +10,8 @@ public class WorkoutTest extends BaseTest {
     @Test(description = "Open workout quick add form")
     public void workoutQuickAddFormShouldBeOpened() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         workoutPage.openWorkoutQuickAdd();
         Assert.assertTrue(workoutPage.isPageOpened(), "Profile page wasn't opened");
@@ -20,8 +20,8 @@ public class WorkoutTest extends BaseTest {
     @Test
     public void workoutShouldBeAddedWithQuickAdd() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = QuickAddFactory.get();
         workoutPage.openWorkoutQuickAdd();
@@ -36,8 +36,8 @@ public class WorkoutTest extends BaseTest {
     @Test
     public void workoutShouldBeDeleted() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = QuickAddFactory.get();
         workoutPage.openWorkoutQuickAdd();
@@ -53,8 +53,8 @@ public class WorkoutTest extends BaseTest {
     @Test
     public void workoutWithoutActivityTypeShouldNotBeAdded() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout1 = QuickAddFactory.get();
         WorkoutQuickAdd workout = new WorkoutQuickAdd(workout1.getDate(), workout1.getTime(), "Select...", workout1.getWorkoutName(),

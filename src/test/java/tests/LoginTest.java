@@ -8,9 +8,9 @@ public class LoginTest extends BaseTest {
 
     @Test(description = "Positive test for login")
     public void successfulLogIn() {
-        loginPage.open();
+        loginPage.open(baseUrl);
         Assert.assertTrue(loginPage.isPageOpened(), "Login page was not opened");
-        loginPage.login(USER, PASSWORD);
+        loginPage.login(email,password);
         Assert.assertTrue(homePage.isPageOpened(), "Log in failed");
     }
 
@@ -19,8 +19,8 @@ public class LoginTest extends BaseTest {
     @Test(description = "Negative test for login: no user name provided")
     public void shouldNotLoginWithoutUsername() {
         loginPage
-                .open()
-                .login("", PASSWORD);
+                .open(baseUrl)
+                .login("", password);
         loginPage.clickOnLoginButton();
         Assert.assertEquals(loginPage.takeErrorMessage(), "Please enter your e-mail address.");
     }
@@ -28,8 +28,8 @@ public class LoginTest extends BaseTest {
     @Test(description = "Negative test for login: no password provided")
     public void shouldNotLoginWithoutPassword() {
         loginPage
-                .open()
-                .login(USER, "");
+                .open(baseUrl)
+                .login(email, "");
         loginPage.clickOnLoginButton();
         Assert.assertEquals(loginPage.takeErrorMessage(), "Please enter a password.");
     }
