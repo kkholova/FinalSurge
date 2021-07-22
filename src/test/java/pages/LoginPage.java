@@ -18,8 +18,8 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Open Login page")
-    public LoginPage open() {
-        driver.get(BASE_URL);
+    public LoginPage open(String baseUrl) {
+        driver.get(baseUrl);
         return this;
     }
 
@@ -30,9 +30,9 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Log in with a user")
-    public HomePage login(String user, String password) {
-        log.info("Log in with user " + user + " and password " + password);
-        driver.findElement(USERNAME_INPUT).sendKeys(user);
+    public HomePage login(String email, String password) {
+        log.info("Log in with user " + email + " and password " + password);
+        driver.findElement(USERNAME_INPUT).sendKeys(email);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         clickOnLoginButton();
         return new HomePage(driver);

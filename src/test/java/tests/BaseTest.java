@@ -25,8 +25,11 @@ public class BaseTest {
     WorkoutPage workoutPage;
     ReportsPage reportsPage;
     AddNewTypePage addNewTypePage;
-    public static String USER = "katekholova@gmail.com";
-    public static String PASSWORD = "Kk!7571255";
+    protected String baseUrl = utils.PropertyReader.getProperty("FINALSURGE_URL", "finalsurge.baseUrl");
+    protected String email = utils.PropertyReader.getProperty("FINALSURGE_EMAIL", "finalsurge.email");
+    protected String password = utils.PropertyReader.getProperty("FINALSURGE_PASSWORD", "finalsurge.password");
+//    public static String USER = "katekholova@gmail.com";
+//    public static String PASSWORD = "Kk!7571255";
 
     @Parameters({"browser"})
     @BeforeMethod(description = "Open browser")

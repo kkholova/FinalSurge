@@ -10,8 +10,8 @@ public class AddNewTypeTest extends BaseTest {
     @Test(description = "Check that activities page was opened")
     public void activitiesPageShouldBeOpened() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         addNewTypePage.openFullAddPage();
         addNewTypePage.clickOnAddNewType();
@@ -21,8 +21,8 @@ public class AddNewTypeTest extends BaseTest {
     @Test(description = "Check that new workout type was added")
     public void newActivityTypeShouldBeAdded() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         addNewTypePage.openFullAddPage();
         addNewTypePage.clickOnAddNewType();
@@ -37,8 +37,8 @@ public class AddNewTypeTest extends BaseTest {
     @Test(description = "Check that new workout type was deleted")
     public void newActivityTypeShouldBeDeleted() {
         loginPage
-                .open()
-                .login(USER, PASSWORD);
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         addNewTypePage.openFullAddPage();
         addNewTypePage.clickOnAddNewType();
