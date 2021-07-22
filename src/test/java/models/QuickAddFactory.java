@@ -2,21 +2,20 @@ package models;
 
 import com.github.javafaker.Faker;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class QuickAddFactory {
     public static WorkoutQuickAdd get() {
-//TODO преобразовать дату в американский формат и добавить рандом?
+        int currentDay = LocalDate.now().getDayOfMonth();
+        DateFormat dateFormat2 = new SimpleDateFormat(String.format("MM/%s/yyyy", currentDay - 2));
+        Date date2 = new Date();
+        String workoutDay = dateFormat2.format(date2);
         Faker faker = new Faker();
         return WorkoutQuickAdd.builder()
-                .date("6/26/2021")
+                .date(workoutDay)
                 .time("11:00 AM")
                 .activityType("Run")
                 .workoutName(faker.name().name())

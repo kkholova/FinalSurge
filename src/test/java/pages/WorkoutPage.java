@@ -65,6 +65,7 @@ public class WorkoutPage extends BasePage {
 
     @Step("Take alert message after workout is added")
     public String getAlert() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ALERT));
         return driver.findElement(ALERT).getText();
     }
 
@@ -93,8 +94,12 @@ public class WorkoutPage extends BasePage {
     @Step("Check that workout with {workoutTitle} was deleted from the calendar")
     public boolean checkWorkoutWasDeletedFromCalendar(String workoutTitle) {
         log.info("Check workout with name " + workoutTitle + " was deleted");
-        driver.findElement(By.xpath(String.format(calendarTitleLocator, workoutTitle))).isDisplayed();
-        return false;
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(String.format(calendarTitleLocator, workoutTitle))));
+            return driver.findElement(By.xpath(String.format(calendarTitleLocator, workoutTitle))).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
 }

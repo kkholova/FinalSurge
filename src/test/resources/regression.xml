@@ -4,16 +4,18 @@
     <listeners>
         <listener class-name="tests.base.AnnotationTransformer"/>
     </listeners>
-    <test name="test 1">
+    <test name="Thread 1">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.ProfileTest"/>
             <class name="tests.WorkoutTest"/>
             <class name="tests.CalendarTest"/>
+            <class name="tests.ReportsTest"/>
+            <class name="tests.AddNewTypeTest"/>
         </classes>
     </test> <!-- Test -->
-    <test name="test 2">
+    <test name="Thread 2">
         <parameter name="browser" value="firefox"></parameter>
         <classes>
             <class name="tests.LoginTest"/>

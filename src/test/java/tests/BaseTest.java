@@ -24,6 +24,7 @@ public class BaseTest {
     CalendarPage calendarPage;
     WorkoutPage workoutPage;
     ReportsPage reportsPage;
+    AddNewTypePage addNewTypePage;
     public static String USER = "katekholova@gmail.com";
     public static String PASSWORD = "Kk!7571255";
 
@@ -55,6 +56,7 @@ public class BaseTest {
         calendarPage = new CalendarPage(driver);
         workoutPage = new WorkoutPage(driver);
         reportsPage = new ReportsPage(driver);
+        addNewTypePage = new AddNewTypePage(driver);
     }
 
 

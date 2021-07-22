@@ -7,6 +7,10 @@ import models.Profile;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.File;
@@ -17,6 +21,12 @@ public class ProfilePage extends BasePage {
     public static final By SETTINGS_BUTTON = By.xpath("//a[contains( text(),'Settings')]");
     public static final By EDIT_PROFILE = By.xpath("//span[contains(text(),'Edit Profile')]");
     public static final By SAVE_EDIT_PROFILE = By.id("saveButtonProfile");
+    public static final By DELETE_PHOTO_BUTTON = By.id("del-pic");
+    public static final By SUBMIT_DELETE_PHOTO = By.xpath("//div[@class = 'modal-footer']//a[contains(text(),'OK')]");
+    String bdayId = "BDay";
+    String weightId = "Weight";
+    String cityId = "City";
+    String zipId = "Zip";
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -38,7 +48,6 @@ public class ProfilePage extends BasePage {
         driver.findElement(EDIT_PROFILE).click();
     }
 
-//TODO add swich case for gender and weightMeasure
 
     public String chooseGender(String genderType) {
         switch (genderType) {
@@ -74,9 +83,9 @@ public class ProfilePage extends BasePage {
         log.info("Set gender in profile");
         new InputHelper(driver, chooseGender(gender)).tickRadioButton(chooseGender(gender));
         log.info("Add Bday to profile");
-        new InputHelper(driver, "BDay").writeText(profile.getBirthday());
+        new InputHelper(driver, bdayId).writeText(profile.getBirthday());
         log.info("Add weight to profile");
-        new InputHelper(driver, "Weight").writeText(profile.getWeight());
+        new InputHelper(driver, weightId).writeText(profile.getWeight());
         log.info("Choose weight measure in profile");
         new InputHelper(driver, chooseWeightMeasure(weightMeasure)).tickRadioButton(chooseWeightMeasure(weightMeasure));
         log.info("Add country to profile");
@@ -84,14 +93,15 @@ public class ProfilePage extends BasePage {
         log.info("Add region to profile");
         new InputHelper(driver, "Region").selectFromDropdown(profile.getRegion());
         log.info("Add city to profile");
-        new InputHelper(driver, "City").writeText(profile.getCity());
+        new InputHelper(driver, cityId).writeText(profile.getCity());
         log.info("Add zip to profile");
-        new InputHelper(driver, "Zip").writeText(profile.getZip());
+        new InputHelper(driver, zipId).writeText(profile.getZip());
     }
 
     @Step("Save profile's changes")
     public void saveProfileChanges() {
         log.info("Click on save edit profile changes");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SAVE_EDIT_PROFILE));
         driver.findElement(SAVE_EDIT_PROFILE).click();
     }
 
@@ -107,32 +117,39 @@ public class ProfilePage extends BasePage {
         validateInput("Zip/Postal Code:", String.format("Zip/Postal Code: " + profile.getZip()));
     }
 
-//TODO   Пока не пробито что-то с дефолтным fileDetector
 
-//    @Step("Add photo to the user profile")
-//    public void uploadPhoto(String path) {
-//        log.info("Upload photo to the profile");
-//        File file = new File(path);
-//        driver.findElement(By.id("UserThumbnail")).click();
-//        WebElement uploader = driver.findElement(By.id("uploader"));
-//        driver.switchTo().frame(uploader);
-//        log.info("switched to frame");
-//        driver.findElement(By.cssSelector("[type = 'file']")).sendKeys(file.getAbsolutePath());
-//        log.info("file name sent");
-//        driver.switchTo().defaultContent();
-//    }
-//
-//    @Step
-//    public void savePhoto(){
-//        driver.findElement(By.id("NextStep")).click();
-//    }
+    @Step("Add photo to the user profile")
+    public void uploadPhoto(String path) {
+        driver.findElement(By.id("UserThumbnail")).click();
+        WebElement uploader = driver.findElement(By.id("uploader"));
+        driver.switchTo().frame(uploader);
+        File file = new File(path);
+        log.info("switched to frame");
+        driver.findElement(By.cssSelector("[type = 'file']")).sendKeys(file.getAbsolutePath());
+        driver.switchTo().defaultContent();
+    }
+
+    @Step("Save photo")
+    public void savePhoto() throws InterruptedException {
+        driver.findElement(By.id("NextStep")).click();
+        Thread.sleep(7000);
+        driver.findElement(By.id("NextStep")).click();
+        Thread.sleep(7000);
+    }
+
+    @Step("Delete photo")
+    public void deletePhoto() {
+        driver.findElement(DELETE_PHOTO_BUTTON).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_DELETE_PHOTO));
+        driver.findElement(SUBMIT_DELETE_PHOTO).click();
+    }
 
     @Step("Clean profile fields")
     public void clean() {
-        driver.findElement(By.id("BDay")).clear();
-        driver.findElement(By.id("Weight")).clear();
-        driver.findElement(By.id("City")).clear();
-        driver.findElement(By.id("Zip")).clear();
+        driver.findElement(By.id(bdayId)).clear();
+        driver.findElement(By.id(weightId)).clear();
+        driver.findElement(By.id(cityId)).clear();
+        driver.findElement(By.id(zipId)).clear();
     }
 
 }

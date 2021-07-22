@@ -8,10 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.time.LocalDate;
+
 @Log4j2
 public class CalendarPage extends BasePage {
     public static final By OPEN_CALENDAR_BUTTON = By.xpath("//a[@class = 'ptip_s' and @href = 'Calendar.cshtml']");
     public static final By BREADCRUMB = By.xpath("//a[contains( text(),'Training Calendar')]");
+    String elementToDrag = "//div[contains(text(),'%s')]/ancestor::div[contains(@class , 'dropdown')]/ancestor::td";
+    String elementToDropIn = "//div[contains(@class , 'dropdown')]/ancestor::td[@data-day = '%s' and @data-month = '%s' and @data-year = '%s']";
 
     @Step("Open Calendar page")
     public void openCalendarPage() {
@@ -30,19 +34,17 @@ public class CalendarPage extends BasePage {
         return isExist(BREADCRUMB);
     }
 
-//TODO  finish test
 
-//    @Step("Drag and drop a workout in the calendar")
-//    public void dragAndDrop(String workoutName){
-//        //div[contains(text(),'Tabata')]/ancestor::div[contains(@class , 'dropdown')]
-//
-//        WebElement element = driver.findElement(By.xpath(String.format("//div[contains(text(),'%s')]/ancestor::div[contains(@class , 'dropdown')]/ancestor::td",workoutName)));
-//       String fromDate = driver.findElement(By.xpath("//div[contains(text(),'%s')]/ancestor::div[contains(@class , 'dropdown')]/ancestor::td")).getAttribute("data-day");
-//        System.out.println(fromDate);
-////        String toDate =//div[contains(text(),'Tabata')]/ancestor::div[contains(@class , 'dropdown')]/ancestor::td/following-sibling::td
-//        WebElement target = driver.findElement(By.xpath(String.format("div[contains(text(),'%s')]/ancestor::div[contains(@class , 'dropdown')]/ancestor::td/following-sibling::td",workoutName)));
-//
-//        (new Actions(driver)).dragAndDrop(element, target).perform();
-//
-//    }
+    @Step("Drag and drop a workout with name {workoutName} in the calendar")
+    public void dragAndDropWorkoutToNewDate(String workoutName) {
+        int currentDay = LocalDate.now().getDayOfMonth();
+        int currentMonth = LocalDate.now().getMonthValue();
+        int currentYear = LocalDate.now().getYear();
+        String day = String.format("%s", currentDay + 1);
+        log.info("Find element");
+        WebElement element = driver.findElement(By.xpath(String.format(elementToDrag, workoutName)));
+        log.info("Find target");
+        WebElement target = driver.findElement(By.xpath(String.format(elementToDropIn, day, currentMonth, currentYear)));
+        (new Actions(driver)).dragAndDrop(element, target).perform();
+    }
 }

@@ -32,14 +32,17 @@ public class ProfileTest extends BaseTest {
     }
 
 
-//    @Test(description = "Add user photo to the profile")
-//    public void profilePhotoShouldBeAdded() {
-//        loginPage.open();
-//        loginPage.login(USER, PASSWORD);
-//        profilePage.openProfilePage();
-//        profilePage.openEditProfileForm();
-//        profilePage.uploadPhoto("src/test/resources/cat.jpg");
-//        String fileName = driver.findElement(By.cssSelector(".fileupload-preview")).getText();
-//        Assert.assertEquals(fileName, "cat.jpg", "File was not uploaded");
-//    }
+    @Test(description = "Add user photo to the profile")
+    public void profilePhotoShouldBeAddedAndDeleted() throws InterruptedException {
+        loginPage.open();
+        loginPage.login(USER, PASSWORD);
+        profilePage.openProfilePage();
+        profilePage.openEditProfileForm();
+        profilePage.uploadPhoto("src/test/resources/cat.jpg");
+        profilePage.savePhoto();
+        profilePage.saveProfileChanges();
+        profilePage.openEditProfileForm();
+        profilePage.deletePhoto();
+        profilePage.saveProfileChanges();
+    }
 }
