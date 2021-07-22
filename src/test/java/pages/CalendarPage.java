@@ -36,7 +36,7 @@ public class CalendarPage extends BasePage {
 
 
     @Step("Drag and drop a workout with name {workoutName} in the calendar")
-    public void dragAndDrop(String workoutName) {
+    public void dragAndDropWorkoutToNewDate(String workoutName) {
         int currentDay = LocalDate.now().getDayOfMonth();
         int currentMonth = LocalDate.now().getMonthValue();
         int currentYear = LocalDate.now().getYear();
