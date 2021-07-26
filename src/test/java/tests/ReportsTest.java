@@ -1,6 +1,6 @@
 package tests;
 
-import models.QuickAddFactory;
+import models.WorkoutAddFactory;
 import models.WorkoutQuickAdd;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -21,7 +21,7 @@ public class ReportsTest extends BaseTest {
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        WorkoutQuickAdd workout = QuickAddFactory.get();
+        WorkoutQuickAdd workout = WorkoutAddFactory.get();
         workoutPage.openWorkoutQuickAdd();
         workoutPage.workOutQuickAdd(workout);
         workoutPage.saveQuickAddForm();

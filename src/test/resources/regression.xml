@@ -13,6 +13,7 @@
             <class name="tests.CalendarTest"/>
             <class name="tests.ReportsTest"/>
             <class name="tests.AddNewTypeTest"/>
+            <class name="tests.WorkoutFullAddTest"/>
         </classes>
     </test> <!-- Test -->
     <test name="Thread 2">

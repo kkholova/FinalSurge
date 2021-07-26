@@ -25,6 +25,8 @@ public class BaseTest {
     WorkoutPage workoutPage;
     ReportsPage reportsPage;
     AddNewTypePage addNewTypePage;
+    WorkoutFullAddPage workoutFullAddPage;
+    WorkoutDetailsPage workoutDetailsPage;
     protected String baseUrl = utils.PropertyReader.getProperty("FINALSURGE_URL", "finalsurge.baseUrl");
     protected String email = utils.PropertyReader.getProperty("FINALSURGE_EMAIL", "finalsurge.email");
     protected String password = utils.PropertyReader.getProperty("FINALSURGE_PASSWORD", "finalsurge.password");
@@ -59,6 +61,8 @@ public class BaseTest {
         workoutPage = new WorkoutPage(driver);
         reportsPage = new ReportsPage(driver);
         addNewTypePage = new AddNewTypePage(driver);
+        workoutFullAddPage = new WorkoutFullAddPage(driver);
+        workoutDetailsPage = new WorkoutDetailsPage(driver);
     }
 
 

@@ -1,6 +1,6 @@
 package tests;
 
-import models.QuickAddFactory;
+import models.WorkoutAddFactory;
 import models.WorkoutQuickAdd;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,7 +23,7 @@ public class WorkoutTest extends BaseTest {
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        WorkoutQuickAdd workout = QuickAddFactory.get();
+        WorkoutQuickAdd workout = WorkoutAddFactory.get();
         workoutPage.openWorkoutQuickAdd();
         workoutPage.workOutQuickAdd(workout);
         workoutPage.saveQuickAddForm();
@@ -31,13 +31,13 @@ public class WorkoutTest extends BaseTest {
                 workout.getWorkoutName()), "Workout was not added to the calendar");
     }
 
-    @Test(description = "Add workout with quick add")
+    @Test(description = "Add workout with quick add and check that it was saved to the library")
     public void workoutShouldBeAddedToTheLibrary() {
         loginPage
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        WorkoutQuickAdd fakeWorkout = QuickAddFactory.get();
+        WorkoutQuickAdd fakeWorkout = WorkoutAddFactory.get();
         WorkoutQuickAdd workout = new WorkoutQuickAdd(fakeWorkout.getDate(), fakeWorkout.getTime(), fakeWorkout.getActivityType(), fakeWorkout.getWorkoutName(),
                 fakeWorkout.getDescription(), true, fakeWorkout.getPlannedDistance(), fakeWorkout.getPlannedDuration(), fakeWorkout.getDistance(),
                 fakeWorkout.getDuration(), fakeWorkout.getHowIFelt(), fakeWorkout.getPerceivedEffort(), true);
@@ -56,7 +56,7 @@ public class WorkoutTest extends BaseTest {
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        WorkoutQuickAdd workout = QuickAddFactory.get();
+        WorkoutQuickAdd workout = WorkoutAddFactory.get();
         workoutPage.openWorkoutQuickAdd();
         workoutPage.workOutQuickAdd(workout);
         workoutPage.saveQuickAddForm();
@@ -73,7 +73,7 @@ public class WorkoutTest extends BaseTest {
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        WorkoutQuickAdd workout1 = QuickAddFactory.get();
+        WorkoutQuickAdd workout1 = WorkoutAddFactory.get();
         WorkoutQuickAdd workout = new WorkoutQuickAdd(workout1.getDate(), workout1.getTime(), "Select...", workout1.getWorkoutName(),
                 "fjfjf", true, "10", "00:22:00", "5", "00:20:00", "Good",
                 "2 (Light)", true);

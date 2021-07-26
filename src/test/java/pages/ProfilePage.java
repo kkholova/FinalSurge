@@ -78,8 +78,6 @@ public class ProfilePage extends BasePage {
         String gender = profile.getGender();
         String weightMeasure = profile.getWeightMeasure();
         log.info("Creating new account");
-//        log.info("Add photo to profile");
-//        new Inputs(driver, "UserThumbnail").uploadPhoto(profile.getPhoto());
         log.info("Set gender in profile");
         new InputHelper(driver, chooseGender(gender)).tickRadioButton(chooseGender(gender));
         log.info("Add Bday to profile");
