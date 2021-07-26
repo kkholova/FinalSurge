@@ -19,14 +19,16 @@ ___
 + Add User photo to the profile
 
 :white_check_mark: Workout page
-+ Add Workout through Quick Add;
++ Add Workout through Quick add;
++ Check that workout is added to the library;
 + Add Workout through Full add;
-+ Add new type of workout;
-+ Update Workout;
++ Add new type of Workout;
++ Check that workout couldn't be added without Activity type;
 + Drug-and-drop a workout in the calendar;
 + Delete workout from calendar
 
-:white_check_mark: Daily vitals page
-+ Add vitals
+:white_check_mark: Reports page
++ Check that workout is added to the report;
+
 
 
