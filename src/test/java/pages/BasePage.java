@@ -11,7 +11,6 @@ import org.testng.Assert;
 @Log4j2
 public abstract class BasePage {
 
-    public static final String BASE_URL = "https://log.finalsurge.com/";
     WebDriver driver;
     WebDriverWait wait;
 

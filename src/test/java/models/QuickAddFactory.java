@@ -27,8 +27,9 @@ public class QuickAddFactory {
                 .duration("01:22:22")
                 .howIFelt("Great")
                 .perceivedEffort("1 (Very Light)")
-                .isSavedToLibrary(faker.random().nextBoolean())
+                .isSavedToLibrary(false)
                 .build();
     }
 
 }
+//faker.random().nextBoolean()

@@ -65,8 +65,8 @@ public class WorkoutPage extends BasePage {
 
     @Step("Take alert message after workout is added")
     public String getAlert() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(ALERT));
-        return driver.findElement(ALERT).getText();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ALERT));
+            return driver.findElement(ALERT).getText();
     }
 
     @Step("Check that workout with {workoutTitle} was added to the calendar")

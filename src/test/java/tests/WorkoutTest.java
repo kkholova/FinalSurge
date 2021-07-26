@@ -17,7 +17,7 @@ public class WorkoutTest extends BaseTest {
         Assert.assertTrue(workoutPage.isPageOpened(), "Profile page wasn't opened");
     }
 
-    @Test
+    @Test(description = "Add workout with quick add")
     public void workoutShouldBeAddedWithQuickAdd() {
         loginPage
                 .open(baseUrl)
@@ -27,13 +27,30 @@ public class WorkoutTest extends BaseTest {
         workoutPage.openWorkoutQuickAdd();
         workoutPage.workOutQuickAdd(workout);
         workoutPage.saveQuickAddForm();
-        Assert.assertEquals(workoutPage.getAlert(), "×\n" +
-                "*The workout was successfully saved to your Workout Library.", "Workout wasn't added");
         Assert.assertTrue(workoutPage.checkWorkoutWasAddedToCalendar(
                 workout.getWorkoutName()), "Workout was not added to the calendar");
     }
 
-    @Test
+    @Test(description = "Add workout with quick add")
+    public void workoutShouldBeAddedToTheLibrary() {
+        loginPage
+                .open(baseUrl)
+                .login(email, password);
+        calendarPage.openCalendarPage();
+        WorkoutQuickAdd fakeWorkout = QuickAddFactory.get();
+        WorkoutQuickAdd workout = new WorkoutQuickAdd(fakeWorkout.getDate(), fakeWorkout.getTime(), fakeWorkout.getActivityType(), fakeWorkout.getWorkoutName(),
+                fakeWorkout.getDescription(), true, fakeWorkout.getPlannedDistance(), fakeWorkout.getPlannedDuration(), fakeWorkout.getDistance(),
+                fakeWorkout.getDuration(), fakeWorkout.getHowIFelt(), fakeWorkout.getPerceivedEffort(), true);
+        workoutPage.openWorkoutQuickAdd();
+        workoutPage.workOutQuickAdd(workout);
+        workoutPage.saveQuickAddForm();
+        Assert.assertEquals(workoutPage.getAlert(), "×\n" +
+                "*The workout was successfully saved to your Workout Library.", "Workout wasn't added to the library");
+        Assert.assertTrue(workoutPage.checkWorkoutWasAddedToCalendar(
+                workout.getWorkoutName()), "Workout was not added to the calendar");
+    }
+
+    @Test(description = "Check that workout was deleted after adding")
     public void workoutShouldBeDeleted() {
         loginPage
                 .open(baseUrl)
@@ -50,7 +67,7 @@ public class WorkoutTest extends BaseTest {
                 workout.getWorkoutName()), "Workout was not deleted");
     }
 
-    @Test
+    @Test(description = "Check that workout can not be added without Activity type")
     public void workoutWithoutActivityTypeShouldNotBeAdded() {
         loginPage
                 .open(baseUrl)
