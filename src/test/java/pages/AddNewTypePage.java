@@ -84,7 +84,6 @@ public class AddNewTypePage extends BasePage {
             driver.findElement(By.xpath(String.format(editActivityTypeLocator, newTypeName))).click();
         } catch (ElementNotInteractableException e) {
             log.warn(e.getLocalizedMessage());
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(editActivityTypeLocator, newTypeName))));
             WebElement element = driver.findElement(By.xpath(String.format(editActivityTypeLocator, newTypeName)));
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
