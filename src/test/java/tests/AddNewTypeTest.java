@@ -31,7 +31,7 @@ public class AddNewTypeTest extends BaseTest {
         addNewTypePage.saveNewTypeButton();
         Assert.assertTrue(addNewTypePage.isNewWorkoutTypeAdded(
                 newActivity.getNewTypeName()), "New Activity type was not added");
-
+        addNewTypePage.deleteNewActivityType(newActivity.getNewTypeName());
     }
 
     @Test(description = "Check that new workout type was deleted")
