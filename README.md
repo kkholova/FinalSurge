@@ -24,7 +24,7 @@ ___
 + Add Workout through Full add;
 + Add new type of Workout;
 + Check that workout couldn't be added without Activity type;
-+ Drug-and-drop a workout in the calendar;
++ Drag-and-drop a workout in the calendar;
 + Delete workout from calendar
 
 :white_check_mark: Reports page
