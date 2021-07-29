@@ -9,8 +9,9 @@ public class CalendarTest extends BaseTest {
 
     @Test(description = "Open edit profile page")
     public void calendarPageShouldBeOpened() {
-        loginPage.open(baseUrl);
-        loginPage.login(email, password);
+        loginPage
+                .open(baseUrl)
+                .login(email, password);
         calendarPage.openCalendarPage();
         Assert.assertTrue(calendarPage.isPageOpened(), "Calendar page wasn't opened");
     }
@@ -22,9 +23,10 @@ public class CalendarTest extends BaseTest {
                 .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = WorkoutAddFactory.get();
-        workoutPage.openWorkoutQuickAdd();
-        workoutPage.workOutQuickAdd(workout);
-        workoutPage.saveQuickAddForm();
+        workoutPage
+                .openWorkoutQuickAdd()
+                .workOutQuickAdd(workout)
+                .saveQuickAddForm();
         calendarPage.dragAndDropWorkoutToNewDate(workout.getWorkoutName());
         Assert.assertTrue(workoutPage.checkWorkoutWasAddedToCalendar(
                 workout.getWorkoutName()), "Workout was not added to the calendar");

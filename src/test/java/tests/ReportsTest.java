@@ -9,8 +9,9 @@ public class ReportsTest extends BaseTest {
 
     @Test(description = "Open reports page")
     public void reportsPageShouldBeOpened() {
-        loginPage.open(baseUrl);
-        loginPage.login(email, password);
+        loginPage
+                .open(baseUrl)
+                .login(email, password);
         reportsPage.openReportsPage();
         Assert.assertTrue(reportsPage.isPageOpened(), "Reports page wasn't opened");
     }
@@ -22,9 +23,10 @@ public class ReportsTest extends BaseTest {
                 .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = WorkoutAddFactory.get();
-        workoutPage.openWorkoutQuickAdd();
-        workoutPage.workOutQuickAdd(workout);
-        workoutPage.saveQuickAddForm();
+        workoutPage
+                .openWorkoutQuickAdd()
+                .workOutQuickAdd(workout)
+                .saveQuickAddForm();
         reportsPage.openReportsPage();
         Assert.assertTrue(reportsPage.checkThatWorkoutIsAddedToReports(workout.getDate(), workout.getWorkoutName()),
                 "Workout was not added to the reports");

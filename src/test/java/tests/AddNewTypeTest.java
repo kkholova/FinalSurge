@@ -13,8 +13,9 @@ public class AddNewTypeTest extends BaseTest {
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        addNewTypePage.openFullAddPage();
-        addNewTypePage.clickOnAddNewType();
+        addNewTypePage
+                .openFullAddPage()
+                .clickOnAddNewType();
         Assert.assertTrue(addNewTypePage.isPageOpened(), "Activities Types page was not opened");
     }
 
@@ -24,11 +25,12 @@ public class AddNewTypeTest extends BaseTest {
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        addNewTypePage.openFullAddPage();
-        addNewTypePage.clickOnAddNewType();
         AddNewType newActivity = AddNewTypeFactory.get();
-        addNewTypePage.createNewWorkoutType(newActivity);
-        addNewTypePage.saveNewTypeButton();
+        addNewTypePage
+                .openFullAddPage()
+                .clickOnAddNewType()
+                .createNewWorkoutType(newActivity)
+                .saveNewTypeButton();
         Assert.assertTrue(addNewTypePage.isNewWorkoutTypeAdded(
                 newActivity.getNewTypeName()), "New Activity type was not added");
         addNewTypePage.deleteNewActivityType(newActivity.getNewTypeName());
@@ -40,12 +42,13 @@ public class AddNewTypeTest extends BaseTest {
                 .open(baseUrl)
                 .login(email, password);
         calendarPage.openCalendarPage();
-        addNewTypePage.openFullAddPage();
-        addNewTypePage.clickOnAddNewType();
         AddNewType newActivity = AddNewTypeFactory.get();
-        addNewTypePage.createNewWorkoutType(newActivity);
-        addNewTypePage.saveNewTypeButton();
-        addNewTypePage.deleteNewActivityType(newActivity.getNewTypeName());
+        addNewTypePage
+                .openFullAddPage()
+                .clickOnAddNewType()
+                .createNewWorkoutType(newActivity)
+                .saveNewTypeButton()
+                .deleteNewActivityType(newActivity.getNewTypeName());
         Assert.assertFalse(addNewTypePage.isNewWorkoutTypeDeleted(
                 newActivity.getNewTypeName()), "New Activity type was not deleted");
 

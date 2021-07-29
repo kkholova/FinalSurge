@@ -24,9 +24,10 @@ public class WorkoutTest extends BaseTest {
                 .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = WorkoutAddFactory.get();
-        workoutPage.openWorkoutQuickAdd();
-        workoutPage.workOutQuickAdd(workout);
-        workoutPage.saveQuickAddForm();
+        workoutPage
+                .openWorkoutQuickAdd()
+                .workOutQuickAdd(workout)
+                .saveQuickAddForm();
         Assert.assertTrue(workoutPage.checkWorkoutWasAddedToCalendar(
                 workout.getWorkoutName()), "Workout was not added to the calendar");
     }
@@ -41,9 +42,10 @@ public class WorkoutTest extends BaseTest {
         WorkoutQuickAdd workout = new WorkoutQuickAdd(fakeWorkout.getDate(), fakeWorkout.getTime(), fakeWorkout.getActivityType(), fakeWorkout.getWorkoutName(),
                 fakeWorkout.getDescription(), true, fakeWorkout.getPlannedDistance(), fakeWorkout.getPlannedDuration(), fakeWorkout.getDistance(),
                 fakeWorkout.getDuration(), fakeWorkout.getHowIFelt(), fakeWorkout.getPerceivedEffort(), true);
-        workoutPage.openWorkoutQuickAdd();
-        workoutPage.workOutQuickAdd(workout);
-        workoutPage.saveQuickAddForm();
+        workoutPage
+                .openWorkoutQuickAdd()
+                .workOutQuickAdd(workout)
+                .saveQuickAddForm();
         Assert.assertEquals(workoutPage.getAlert(), "×\n" +
                 "*The workout was successfully saved to your Workout Library.", "Workout wasn't added to the library");
         Assert.assertTrue(workoutPage.checkWorkoutWasAddedToCalendar(
@@ -57,9 +59,10 @@ public class WorkoutTest extends BaseTest {
                 .login(email, password);
         calendarPage.openCalendarPage();
         WorkoutQuickAdd workout = WorkoutAddFactory.get();
-        workoutPage.openWorkoutQuickAdd();
-        workoutPage.workOutQuickAdd(workout);
-        workoutPage.saveQuickAddForm();
+        workoutPage
+                .openWorkoutQuickAdd()
+                .workOutQuickAdd(workout)
+                .saveQuickAddForm();
         Assert.assertTrue(workoutPage.checkWorkoutWasAddedToCalendar(
                 workout.getWorkoutName()), "Workout was not added to the calendar");
         workoutPage.deleteWorkout(workout.getWorkoutName());
@@ -77,9 +80,10 @@ public class WorkoutTest extends BaseTest {
         WorkoutQuickAdd workout = new WorkoutQuickAdd(workout1.getDate(), workout1.getTime(), "Select...", workout1.getWorkoutName(),
                 "fjfjf", true, "10", "00:22:00", "5", "00:20:00", "Good",
                 "2 (Light)", true);
-        workoutPage.openWorkoutQuickAdd();
-        workoutPage.workOutQuickAdd(workout);
-        workoutPage.saveQuickAddForm();
+        workoutPage
+                .openWorkoutQuickAdd()
+                .workOutQuickAdd(workout)
+                .saveQuickAddForm();
         Assert.assertEquals(workoutPage.getAlert(), "×\n" +
                 "Please fix the following errors:\n" +
                 "*Please select a valid Activity Type.", "Workout was added without Activity type");

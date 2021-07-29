@@ -33,13 +33,15 @@ public class AddNewTypePage extends BasePage {
     }
 
     @Step("Click on workout FUll Add button")
-    public void openFullAddPage() {
+    public AddNewTypePage openFullAddPage() {
         driver.findElement(FULL_ADD_BUTTON).click();
+        return new AddNewTypePage(driver);
     }
 
     @Step("Click on Add New type button")
-    public void clickOnAddNewType() {
+    public AddNewTypePage clickOnAddNewType() {
         driver.findElement(ADD_NEW_TYPE_BUTTON).click();
+        return new AddNewTypePage(driver);
     }
 
     @Step("Choose text color {color}")
@@ -56,18 +58,20 @@ public class AddNewTypePage extends BasePage {
     }
 
     @Step("Edit User profile")
-    public void createNewWorkoutType(AddNewType newType) {
+    public AddNewTypePage createNewWorkoutType(AddNewType newType) {
         String color = newType.getTextColor();
         log.info("Creating new workout type");
         log.info("Set new workout type Name");
         new InputHelper(driver, "ATypeName").writeText(newType.getNewTypeName());
         log.info("Choose text color " + color);
         new InputHelper(driver, chooseTextColor(color)).tickRadioButton(chooseTextColor(color));
+        return new AddNewTypePage(driver);
     }
 
     @Step("Save New Activity type button")
-    public void saveNewTypeButton() {
+    public AddNewTypePage saveNewTypeButton() {
         driver.findElement(SAVE_NEW_TYPE_BUTTON).click();
+        return new AddNewTypePage(driver);
     }
 
     @Step("Check that new workout type was added")
@@ -91,7 +95,7 @@ public class AddNewTypePage extends BasePage {
     }
 
     @Step("Delete new activity type")
-    public void deleteNewActivityType(String newTypeName) {
+    public AddNewTypePage deleteNewActivityType(String newTypeName) {
         log.info("Workout with name " + newTypeName + " should be deleted");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(String.format(newTypeNameLocator, newTypeName))));
         driver.findElement(By.xpath(String.format(newTypeNameLocator, newTypeName))).click();
@@ -102,6 +106,7 @@ public class AddNewTypePage extends BasePage {
         driver.findElement(DELETE_ACTIVITY_TYPE_BUTTON).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_DELETE_ACTIVITY_TYPE));
         driver.findElement(SUBMIT_DELETE_ACTIVITY_TYPE).click();
+        return new AddNewTypePage(driver);
     }
 
     @Step("Check that new workout type was deleted")

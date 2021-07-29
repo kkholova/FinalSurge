@@ -31,13 +31,14 @@ public class WorkoutPage extends BasePage {
     }
 
     @Step("Open workout quick add page")
-    public void openWorkoutQuickAdd() {
+    public WorkoutPage openWorkoutQuickAdd() {
         driver.findElement(QUICK_ADD_BUTTON).click();
+        return new WorkoutPage(driver);
     }
 
 
     @Step("Add workout through the quick add")
-    public void workOutQuickAdd(WorkoutQuickAdd workout) {
+    public WorkoutPage workOutQuickAdd(WorkoutQuickAdd workout) {
         log.info("Adding new workout");
         driver.findElement(WORKOUT_DATE).clear();
         new InputHelper(driver, "WorkoutDate").writeText(workout.getDate());
@@ -55,6 +56,7 @@ public class WorkoutPage extends BasePage {
         new InputHelper(driver, "HowFeel").selectFromDropdown(workout.getHowIFelt());
         new InputHelper(driver, "PerEffort").selectFromDropdown(workout.getPerceivedEffort());
         new InputHelper(driver, "SaveLibrary").tickCheckbox(workout.isSavedToLibrary());
+        return new WorkoutPage(driver);
     }
 
     @Step("Save workout quick add form")

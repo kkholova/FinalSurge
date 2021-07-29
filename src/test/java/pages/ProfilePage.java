@@ -40,12 +40,14 @@ public class ProfilePage extends BasePage {
         return isExist(BREADCRUMB);
     }
 
-    public void openProfilePage() {
+    public ProfilePage openProfilePage() {
         driver.findElement(SETTINGS_BUTTON).click();
+        return new ProfilePage(driver);
     }
 
-    public void openEditProfileForm() {
+    public ProfilePage openEditProfileForm() {
         driver.findElement(EDIT_PROFILE).click();
+        return new ProfilePage(driver);
     }
 
 
@@ -74,7 +76,7 @@ public class ProfilePage extends BasePage {
     }
 
     @Step("Edit User profile")
-    public void editProfile(Profile profile) {
+    public ProfilePage editProfile(Profile profile) {
         String gender = profile.getGender();
         String weightMeasure = profile.getWeightMeasure();
         log.info("Creating new account");
@@ -94,17 +96,19 @@ public class ProfilePage extends BasePage {
         new InputHelper(driver, cityId).writeText(profile.getCity());
         log.info("Add zip to profile");
         new InputHelper(driver, zipId).writeText(profile.getZip());
+        return new ProfilePage(driver);
     }
 
     @Step("Save profile's changes")
-    public void saveProfileChanges() {
+    public ProfilePage saveProfileChanges() {
         log.info("Click on save edit profile changes");
         wait.until(ExpectedConditions.visibilityOfElementLocated(SAVE_EDIT_PROFILE));
         driver.findElement(SAVE_EDIT_PROFILE).click();
+        return new ProfilePage(driver);
     }
 
     @Step("Validate data on profile page")
-    public void validateProfile(Profile profile) {
+    public ProfilePage validateProfile(Profile profile) {
         log.info("Validating data on profile page");
         validateInput("Gender:", String.format("Gender: " + profile.getGender().substring(0, 1).toUpperCase() + profile.getGender().substring(1).toLowerCase()));
         validateInput("Birthday:", String.format("Birthday: " + profile.getBirthday()));
@@ -113,11 +117,12 @@ public class ProfilePage extends BasePage {
         validateInput("State:", String.format("State: " + profile.getRegion()));
         validateInput("City:", String.format("City: " + profile.getCity()));
         validateInput("Zip/Postal Code:", String.format("Zip/Postal Code: " + profile.getZip()));
+        return new ProfilePage(driver);
     }
 
 
     @Step("Add photo to the user profile")
-    public void uploadPhoto(String path) {
+    public ProfilePage uploadPhoto(String path) {
         driver.findElement(By.id("UserThumbnail")).click();
         WebElement uploader = driver.findElement(By.id("uploader"));
         driver.switchTo().frame(uploader);
@@ -125,29 +130,33 @@ public class ProfilePage extends BasePage {
         log.info("switched to frame");
         driver.findElement(By.cssSelector("[type = 'file']")).sendKeys(file.getAbsolutePath());
         driver.switchTo().defaultContent();
+        return new ProfilePage(driver);
     }
 
     @Step("Save photo")
-    public void savePhoto() throws InterruptedException {
+    public ProfilePage savePhoto() throws InterruptedException {
         driver.findElement(By.id("NextStep")).click();
         Thread.sleep(7000);
         driver.findElement(By.id("NextStep")).click();
         Thread.sleep(7000);
+        return new ProfilePage(driver);
     }
 
     @Step("Delete photo")
-    public void deletePhoto() {
+    public ProfilePage deletePhoto() {
         driver.findElement(DELETE_PHOTO_BUTTON).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_DELETE_PHOTO));
         driver.findElement(SUBMIT_DELETE_PHOTO).click();
+        return new ProfilePage(driver);
     }
 
     @Step("Clean profile fields")
-    public void clean() {
+    public ProfilePage clean() {
         driver.findElement(By.id(bdayId)).clear();
         driver.findElement(By.id(weightId)).clear();
         driver.findElement(By.id(cityId)).clear();
         driver.findElement(By.id(zipId)).clear();
+        return new ProfilePage(driver);
     }
 
 }
